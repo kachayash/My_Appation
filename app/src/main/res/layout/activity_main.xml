@@ -12,33 +12,126 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="100dp"
         android:background="@drawable/img" />
 
-    <EditText
-        android:textColorHint="@color/white"
-        android:id="@+id/main_email"
-        android:inputType="textEmailAddress"
-        android:hint="Enter Email Id"
-        android:textColor="@color/white"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/main_linerlayout"
+        android:layout_marginLeft="25dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_below="@id/main_img"
-        android:layout_margin="25dp"
+        android:layout_marginTop="50dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="35dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:id="@+id/main_text1_liner"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Please sing in to continue"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+
+            />
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/main_email"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/main_linerlayout"
+        android:paddingLeft="19dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:hint="Enter Email Id"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/light_white"
+        android:background="@drawable/edit_text_background"
+        android:drawableLeft="@drawable/baseline_mail_outline_24"
+        android:drawablePadding="10dp"
         />
 
     <EditText
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:background="@drawable/edit_text_background"
+        android:paddingLeft="19dp"
         android:id="@+id/main_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_below="@id/main_email"
-        android:layout_margin="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
         android:hint="Enter Password"
         android:inputType="numberPassword"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
-         />
+        android:textColorHint="@color/light_white" />
+
+    <Button
+        android:id="@+id/main_button"
+        android:layout_below="@id/main_password"
+        android:gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginRight="160dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:background="@drawable/buttton_design"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/main_forgetpassword"
+        android:layout_below="@id/main_button"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="150dp"
+        android:text="Forgot Password?"
+        android:textColor="#25dbcc"
+
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/main_forgetpassword"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="83dp"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sing up"
+            android:textSize="18dp"
+            android:textColor="@color/acva"
+            />
+
+    </LinearLayout>
 
 
 </RelativeLayout>
