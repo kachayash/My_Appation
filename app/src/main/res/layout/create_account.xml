@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#201A30"
+    >
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/baseline_keyboard_backspace_24"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/createacc_backbtn"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createacc_backbtn"
+        android:text="Create Account"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/createaccounttext"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/createaccounttext"
+        android:text="Please fill the input blow here"
+        android:textColor="@color/login_page_text_color"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:id="@+id/createaccounttext2"
+
+        />
+
+    <EditText
+        android:id="@+id/createacc_enterfullname"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/createaccounttext2"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="FULL NAME"
+        android:textColor="@color/white"
+        android:textColorHint="@color/login_page_text_color"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/baseline_person_24"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        />
+
+    <EditText
+        android:id="@+id/createacc_enterphonenumber"
+        android:inputType="number"
+        android:maxLength="10"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/createacc_enterfullname"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="PHONE"
+        android:textColor="@color/white"
+        android:textColorHint="@color/login_page_text_color"
+        android:drawableLeft="@drawable/baseline_phone_iphone_24"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        />
+
+    <EditText
+        android:id="@+id/createacc_enteremailid"
+        android:inputType="textEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/createacc_enterphonenumber"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="EMAIL"
+        android:textColor="@color/white"
+        android:textColorHint="@color/login_page_text_color"
+        android:drawableLeft="@drawable/baseline_mail_outline_24"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        />
+
+    <EditText
+        android:id="@+id/createacc_enterpass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/createacc_enteremailid"
+        android:inputType="numberPassword"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="PASSWORD"
+        android:textColor="@color/white"
+        android:textColorHint="@color/login_page_text_color"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        />
+
+    <EditText
+        android:id="@+id/createacc_enterconfpass"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/createacc_enterpass"
+        android:inputType="numberPassword"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/edit_text_background"
+        android:hint="CONFIRM PASSWORD"
+        android:textColor="@color/white"
+        android:textColorHint="@color/login_page_text_color"
+        android:drawableLeft="@drawable/baseline_lock_24"
+        android:drawablePadding="10dp"
+        android:paddingLeft="10dp"
+        />
+    <Button
+        android:id="@+id/create_button"
+        android:layout_below="@id/createacc_enterconfpass"
+        android:gravity="center"
+        android:layout_marginLeft="160dp"
+        android:layout_marginRight="160dp"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Sing Up"
+        android:background="@drawable/buttton_design"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/create_button"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="83dp"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Already have a account?"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:textColor="@color/login_page_text_color"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:textSize="18dp"
+            android:textColor="@color/acva"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
