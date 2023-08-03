@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,211 +7,218 @@
     android:background="#201A30"
     tools:context=".create_singup">
 
-    <ImageView
-        android:id="@+id/createacc_backbtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="371dp"
-        android:background="@drawable/baseline_keyboard_backspace_24"
-        app:layout_constraintBottom_toTopOf="@+id/createaccounttext"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/createaccounttext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/createacc_backbtn"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="185dp"
-        android:text="Create Account"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/createaccounttext2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_backbtn" />
-
-
-    <TextView
-        android:id="@+id/createaccounttext2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/createaccounttext"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
-
-        android:layout_marginEnd="201dp"
-        android:text="Please fill the input blow here"
-        android:textColor="@color/login_page_text_color"
-        android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/createacc_enterfullname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createaccounttext" />
-
-
-    <EditText
-        android:id="@+id/createacc_enterfullname"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/createaccounttext2"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_background"
-        android:drawableLeft="@drawable/baseline_person_24"
-        android:drawablePadding="10dp"
-        android:hint="FULL NAME"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/login_page_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/createacc_enterphonenumber"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createaccounttext2" />
+        android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/createacc_enterphonenumber"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/createacc_enterfullname"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_background"
-        android:drawableLeft="@drawable/baseline_phone_iphone_24"
-        android:drawablePadding="10dp"
-        android:hint="PHONE"
-        android:inputType="number"
-        android:maxLength="10"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/login_page_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/createacc_enteremailid"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_enterfullname" />
-
-    <EditText
-        android:id="@+id/createacc_enteremailid"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/createacc_enterphonenumber"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_background"
-        android:drawableLeft="@drawable/baseline_mail_outline_24"
-        android:drawablePadding="10dp"
-        android:hint="EMAIL"
-        android:inputType="textEmailAddress"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/login_page_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/createacc_enterpass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_enterphonenumber" />
 
 
-    <EditText
-        android:id="@+id/createacc_enterpass"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/createacc_enteremailid"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_background"
-        android:drawableLeft="@drawable/baseline_lock_24"
-        android:drawablePadding="10dp"
-        android:hint="PASSWORD"
-        android:inputType="numberPassword"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/login_page_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/createacc_enterconfpass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_enteremailid" />
-
-    <EditText
-        android:id="@+id/createacc_enterconfpass"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/createacc_enterpass"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/edit_text_background"
-        android:drawableLeft="@drawable/baseline_lock_24"
-        android:drawablePadding="10dp"
-        android:hint="CONFIRM PASSWORD"
-        android:inputType="numberPassword"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/login_page_text_color"
-        app:layout_constraintBottom_toTopOf="@+id/create_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_enterpass" />
-
-    <Button
-        android:id="@+id/create_button"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/createacc_enterconfpass"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="100dp"
-        android:background="@drawable/buttton_design"
-        android:gravity="center"
-        android:text="Sing Up"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createacc_enterconfpass" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_below="@id/create_button"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_button">
+        <ImageView
+            android:id="@+id/createacc_backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/baseline_keyboard_backspace_24"
+       />
 
         <TextView
+            android:id="@+id/createaccounttext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Already have a account?"
-            android:textColor="@color/login_page_text_color"
-            android:textSize="18dp"
+            android:layout_below="@id/createacc_backbtn"
+            android:layout_marginTop="20dp"
+            android:text="Create Account"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp" />
 
+
+        <TextView
+            android:id="@+id/createaccounttext2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/createaccounttext"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Please fill the input blow here"
+            android:textColor="@color/login_page_text_color"
+            android:textSize="15dp"
+         />
+
+
+        <EditText
+            android:id="@+id/createacc_enterfullname"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createaccounttext2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:hint="FULL NAME"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+         />
+
+
+        <EditText
+            android:id="@+id/createacc_enterphonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createacc_enterfullname"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_phone_iphone_24"
+            android:drawablePadding="10dp"
+            android:hint="PHONE"
+            android:inputType="number"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+          />
+
+        <EditText
+            android:id="@+id/createacc_enteremailid"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createacc_enterphonenumber"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_mail_outline_24"
+            android:drawablePadding="10dp"
+            android:hint="EMAIL"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+          />
+
+
+        <EditText
+            android:id="@+id/createacc_enterpass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createacc_enteremailid"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:hint="PASSWORD"
+            android:inputType="numberPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="@color/acva"
-            android:textSize="18dp" />
+        <EditText
+            android:id="@+id/createacc_enterconfpass"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createacc_enterpass"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:drawablePadding="10dp"
+            android:hint="CONFIRM PASSWORD"
+            android:inputType="numberPassword"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+           />
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+            <RadioGroup
+                android:id="@+id/gender_singup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/createacc_enterconfpass"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+
+
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/singup_male"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textSize="22dp"
+                        android:textColor="@color/login_page_text_color"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="1"
+                        />
+                    <RadioButton
+                        android:textColor="@color/login_page_text_color"
+                        android:id="@+id/singup_female"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:layout_weight="1"
+                        android:textSize="22dp"/>
+
+                </LinearLayout>
+            </RadioGroup>
+
+<!--        <Button-->
+<!--            android:id="@+id/create_button"-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/createacc_enterconfpass"-->
+<!--            android:layout_marginTop="40dp"-->
+<!--            android:background="@drawable/buttton_design"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Sing Up"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--           />-->
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout3_login_createsingup"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_below="@id/create_button"-->
+<!--            android:layout_marginTop="100dp"-->
+<!--           >-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:text="Already have a account?"-->
+<!--                android:textColor="@color/login_page_text_color"-->
+<!--                android:textSize="18dp"-->
+
+<!--                />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Login"-->
+<!--                android:textColor="@color/acva"-->
+<!--                android:textSize="18dp" />-->
+
+<!--        </LinearLayout>-->
+    </RelativeLayout>
+</ScrollView>
