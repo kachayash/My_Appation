@@ -142,11 +142,28 @@
             android:textColorHint="@color/login_page_text_color"
            />
 
+        <EditText
+            android:editable="false"
+            android:id="@+id/singup_dob"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createacc_enterconfpass"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_date_range_24"
+            android:drawablePadding="10dp"
+            android:hint="DATE OF BIRTH"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+            />
             <LinearLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/createacc_enterconfpass">
+                android:layout_below="@+id/singup_dob">
 
 
                 <RadioGroup
@@ -191,44 +208,46 @@
             </LinearLayout>
 
 
-        <!--        <Button-->
-<!--            android:id="@+id/create_button"-->
-<!--            android:layout_width="120dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/createacc_enterconfpass"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:background="@drawable/buttton_design"-->
-<!--            android:gravity="center"-->
-<!--            android:text="Sing Up"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--           />-->
+                <Button
+            android:id="@+id/create_button"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout3"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/buttton_design"
+            android:gravity="center"
+            android:text="Sing Up"
+            android:layout_centerHorizontal="true"
+           />
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/linearLayout3_login_createsingup"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_below="@id/create_button"-->
-<!--            android:layout_marginTop="100dp"-->
-<!--           >-->
+        <LinearLayout
+            android:id="@+id/linearLayout3_login_createsingup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/create_button"
+            android:layout_marginTop="50dp"
+           >
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:text="Already have a account?"-->
-<!--                android:textColor="@color/login_page_text_color"-->
-<!--                android:textSize="18dp"-->
+            <TextView
+                android:id="@+id/login_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Already have a account?"
+                android:textColor="@color/login_page_text_color"
+                android:textSize="18dp"
 
-<!--                />-->
+                />
 
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="Login"-->
-<!--                android:textColor="@color/acva"-->
-<!--                android:textSize="18dp" />-->
+            <TextView
+                android:id="@+id/login_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="@color/acva"
+                android:textSize="18dp" />
 
-<!--        </LinearLayout>-->
+        </LinearLayout>
     </RelativeLayout>
 </ScrollView>

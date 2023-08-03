@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button login;
     EditText email,password;
-    TextView singup;
+    TextView singup,singup2;
     String emailp="[a-zA-Z0-9.-]+@[a-z]+\\.+[a-z]+";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         email=findViewById(R.id.main_email);
         password=findViewById(R.id.main_password);
         singup= findViewById(R.id.singup_main);
+        singup2=findViewById(R.id.singup_main2);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,6 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         });
         singup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new commanmethod(MainActivity.this , create_singup.class);
+            }
+        });
+
+        singup2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new commanmethod(MainActivity.this , create_singup.class);
