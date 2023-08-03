@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -142,46 +142,56 @@
             android:textColorHint="@color/login_page_text_color"
            />
 
-
-            <RadioGroup
-                android:id="@+id/gender_singup"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_below="@id/createacc_enterconfpass"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_below="@+id/createacc_enterconfpass">
 
 
-                >
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/gender_singup"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:layout_below="@id/createacc_enterconfpass"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/singup_male"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Male"
-                        android:textSize="22dp"
-                        android:textColor="@color/login_page_text_color"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        />
-                    <RadioButton
-                        android:textColor="@color/login_page_text_color"
-                        android:id="@+id/singup_female"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Female"
-                        android:layout_weight="1"
-                        android:textSize="22dp"/>
+                        <RadioButton
+                            android:id="@+id/singup_male"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male"
+                            android:textSize="22dp"
+                            android:textColor="@color/login_page_text_color"
+                            android:layout_marginRight="10dp"
 
-                </LinearLayout>
-            </RadioGroup>
+                            />
+                        <RadioButton
+                            android:textColor="@color/login_page_text_color"
+                            android:id="@+id/singup_female"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female"
+                            android:textSize="22dp"/>
+                </RadioGroup>
 
-<!--        <Button-->
+                <Spinner
+                    android:layout_below="@id/linearLayout3"
+                    android:id="@+id/spinner_singup"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/edit_text_background"
+                    />
+
+
+            </LinearLayout>
+
+
+        <!--        <Button-->
 <!--            android:id="@+id/create_button"-->
 <!--            android:layout_width="120dp"-->
 <!--            android:layout_height="wrap_content"-->
