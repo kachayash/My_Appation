@@ -210,6 +210,7 @@ public class create_singup extends AppCompatActivity {
                 else if (gender.getCheckedRadioButtonId() == -1) {
                     new commanmethod(create_singup.this,"Please Select Gender");
                 }
+                //city
                 else if(scity.equals("")){
                     new commanmethod(create_singup.this,"Please Select City");
                 }
