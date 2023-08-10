@@ -1,9 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Homepage">
+    android:background="#201A30"
+    tools:context=".create_singup">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <ImageView
+            android:id="@+id/homepage_backbtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/baseline_keyboard_backspace_24"
+            />
+
+        <TextView
+            android:id="@+id/update_account_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/homepage_backbtn"
+            android:layout_marginTop="20dp"
+            android:text="Update Account"
+            android:textColor="@color/white"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp" />
+
+
+        <TextView
+            android:id="@+id/createaccounttext2_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_account_homepage"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="Please fill the input blow here"
+            android:textColor="@color/login_page_text_color"
+            android:textSize="15dp"
+            />
+
+
+        <EditText
+            android:id="@+id/homepage_enterfullname"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/createaccounttext2_homepage"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_person_24"
+            android:drawablePadding="10dp"
+            android:hint="FULL NAME"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+            />
+
+
+        <EditText
+            android:id="@+id/homepage_enterphonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/homepage_enterfullname"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_phone_iphone_24"
+            android:drawablePadding="10dp"
+            android:hint="PHONE"
+            android:inputType="number"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+            />
+
+        <EditText
+            android:id="@+id/homepage_enteremailid"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/homepage_enterphonenumber"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_mail_outline_24"
+            android:drawablePadding="10dp"
+            android:hint="EMAIL"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+            />
+
+
+
+        <EditText
+            android:editable="false"
+            android:id="@+id/singup_dob_homepage"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/homepage_enteremailid"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/edit_text_background"
+            android:drawableLeft="@drawable/baseline_date_range_24"
+            android:drawablePadding="10dp"
+            android:hint="DATE OF BIRTH"
+            android:paddingLeft="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/login_page_text_color"
+            />
+        <LinearLayout
+            android:id="@+id/linearLayout3_homepage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/singup_dob_homepage">
+
+
+            <RadioGroup
+                android:id="@+id/gender_homepage"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/singup_male_homepage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="22dp"
+                    android:textColor="@color/login_page_text_color"
+                    android:layout_marginRight="10dp"
+
+                    />
+                <RadioButton
+                    android:textColor="@color/login_page_text_color"
+                    android:id="@+id/singup_female_homepage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textSize="22dp"/>
+            </RadioGroup>
+
+            <Spinner
+                android:layout_below="@id/linearLayout3_homepage"
+                android:id="@+id/spinner_singup_homepage"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_background"
+                />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/update_button_homepage"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout3_homepage"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/buttton_design"
+            android:gravity="center"
+            android:text="Update"
+            android:layout_centerHorizontal="true"
+            />
+
+        <Button
+            android:id="@+id/logout_button_homepage"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/update_button_homepage"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttton_design"
+            android:gravity="center"
+            android:text="Logout"
+            android:layout_centerHorizontal="true"
+            />
+
+
+    </RelativeLayout>
+</ScrollView>

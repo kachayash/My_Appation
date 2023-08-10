@@ -4,6 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.MotionEvent;
@@ -36,12 +39,16 @@ public class create_singup extends AppCompatActivity {
     RadioGroup gender;
     Spinner city;
 
-    String scity;
+    String scity,sgender;
     String emailp="[a-zA-Z0-9.-]+@[a-z]+\\.+[a-z]+";
 
     ArrayList<String> arrayList;
 
     Calendar calendar;
+
+    SQLiteDatabase db;
+
+
 
 
 
@@ -88,7 +95,8 @@ public class create_singup extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
                 RadioButton radioButton = findViewById(i);//i=R.id.singup_male , R.id.singup_female;
-                new commanmethod(create_singup.this , radioButton.getText().toString());
+                sgender=radioButton.getText().toString();
+                new commanmethod(create_singup.this ,sgender);
             }
         });
 
@@ -174,6 +182,10 @@ public class create_singup extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+        //DATABASE
+        db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
+        db.execSQL(tableQuery);
 
         //check validation
 
@@ -224,15 +236,27 @@ public class create_singup extends AppCompatActivity {
                     dob.setError("Please Select Date of Birth");
                 }
                 else {
+
+                    String select ="SELECT * FROM USER WHERE EMAIL='"+email.getText().toString()+"' AND CONTACT='"+contact.getText().toString()+"'";
+                    Cursor cursor=db.rawQuery(select,null);
+                    if (cursor.getCount()>0){
+                        new commanmethod(create_singup.this ,"Email ID, Contact Number Alredy Registered" );
+
+                    }
+                    else{
+                    String insertQuery ="INSERT INTO USER VALUES(NULL ,'"+name.getText().toString()+"' ,'"+email.getText().toString()+"' ,'"+contact.getText().toString()+"' ,'"+password.getText().toString()+"' ,'"+confirmpassword.getText().toString()+"' ,'"+dob.getText().toString()+"' ,'"+scity+"' ,'"+sgender+"' )";
+                    db.execSQL(insertQuery);
                     System.out.println("Signup Successfully");
                     //Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
                     new commanmethod(create_singup.this, "Signup Successfully");
                     /*Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);*/
                     onBackPressed();
+                    }
                 }
             }
         });
+
 
         // backbutton
         backbutton=findViewById(R.id.createacc_backbtn);
@@ -260,5 +284,7 @@ public class create_singup extends AppCompatActivity {
                 new commanmethod(create_singup.this , MainActivity.class);
             }
         });
+
+//
     }
 }
