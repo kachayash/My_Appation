@@ -62,23 +62,52 @@
         android:hint="Enter Email Id"
         android:inputType="textEmailAddress"
         style="@style/edit_test"
+        android:layout_marginTop="@dimen/_20sdp"
         />
-    <EditText
-        style="@style/edit_test"
-        android:id="@+id/main_password"
+
+    <FrameLayout
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/main_email"
-        android:drawableLeft="@drawable/baseline_lock_24"
-        android:hint="Enter Password"
-        android:inputType="numberPassword"/>
+        android:id="@+id/framlayout_main">
+
+        <EditText
+            style="@style/edit_test"
+            android:id="@+id/main_password"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:drawableLeft="@drawable/baseline_lock_24"
+            android:hint="Enter Password"
+            android:inputType="numberPassword"
+            />
+
+        <ImageView
+            android:layout_marginRight="@dimen/_35sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/password_hide"
+            android:id="@+id/main_password_hideimg"
+            android:layout_gravity="center_vertical|end"/>
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/_35sdp"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/password_view"
+            android:id="@+id/main_password_viewimg"
+            android:layout_gravity="center_vertical|end"/>
+
+
+    </FrameLayout>
 
 
     <CheckBox
         android:id="@+id/main_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/main_password"
+        android:layout_below="@id/framlayout_main"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_25sdp"
         android:checked="true"

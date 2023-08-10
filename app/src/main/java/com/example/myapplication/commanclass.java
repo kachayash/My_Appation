@@ -11,5 +11,7 @@ public class commanclass {
     public  static  String CITY="city";
     public  static  String GENDER="gender";
 
+    public static String REMEMBER="remmember";
+
 
 }

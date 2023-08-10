@@ -7,10 +7,13 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     SQLiteDatabase db;
 
     SharedPreferences sp;
+    CheckBox remember;
+
+    ImageView hide,viewimg;
 
 
     @Override
@@ -43,6 +49,32 @@ public class MainActivity extends AppCompatActivity {
         singup2=findViewById(R.id.singup_main2);
 
         sp=getSharedPreferences(commanclass.PREF,MODE_PRIVATE);
+        remember=findViewById(R.id.main_checkbox);
+
+
+        //image ppassword
+        hide=findViewById(R.id.main_password_hideimg);
+        viewimg=findViewById(R.id.main_password_viewimg);
+
+        hide.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hide.setVisibility(View.GONE);
+                viewimg.setVisibility(View.VISIBLE);
+
+                password.setTransformationMethod(new PasswordTransformationMethod());
+            }
+        });
+        viewimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hide.setVisibility(View.VISIBLE);
+                viewimg.setVisibility(View.GONE);
+
+                password.setTransformationMethod(null);
+            }
+        });
+
 
 
 
@@ -94,6 +126,14 @@ public class MainActivity extends AppCompatActivity {
                             sp.edit().putString(commanclass.GENDER,sGender).commit();
                             sp.edit().putString(commanclass.CITY,sCity).commit();
 
+                            if(remember.isChecked()){
+                                sp.edit().putString(commanclass.REMEMBER,"Yes").commit();
+                            }else{
+                                sp.edit().putString(commanclass.REMEMBER,"").commit();
+                            }
+
+
+
 
                             Log.d("USER_DATA", sUserId + "\n" + sName + "\n" + sContact + "\n" + sEmail + "\n" + sPassword + "\n" + sDob + "\n" + sGender + "\n" + sCity);
 
@@ -122,5 +162,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+            finishAffinity();
     }
 }

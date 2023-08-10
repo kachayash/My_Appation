@@ -167,6 +167,16 @@ public class Homepage extends AppCompatActivity {
         String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
         db.execSQL(tableQuery);
 
+
+        //logout
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sp.edit().clear().commit();
+                new commanmethod(Homepage.this,MainActivity.class);
+            }
+        });
+
         //check validation
 
         update.setOnClickListener(new View.OnClickListener() {
@@ -259,5 +269,11 @@ public class Homepage extends AppCompatActivity {
         }
         city.setSelection(icitypo);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        finishAffinity();
     }
 }
