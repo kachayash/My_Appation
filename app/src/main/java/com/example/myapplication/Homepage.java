@@ -35,6 +35,7 @@ public class Homepage extends AppCompatActivity {
     ImageView backbutton;
     EditText name,email,contact, dob;
     RadioGroup gender;
+    RadioButton male,female;
     Spinner city;
 
     String scity,sgender;
@@ -65,6 +66,8 @@ public class Homepage extends AppCompatActivity {
         logout=findViewById(R.id.logout_button_homepage);
         backbutton=findViewById(R.id.homepage_backbtn);
         sp=getSharedPreferences(commanclass.PREF,MODE_PRIVATE);
+        male=findViewById(R.id.singup_male_homepage);
+        female=findViewById(R.id.singup_female_homepage);
 
 
         //Radio Button
@@ -237,6 +240,24 @@ public class Homepage extends AppCompatActivity {
         contact.setText(sp.getString(commanclass.CONTACT,""));
         email.setText(sp.getString(commanclass.EMAIL,""));
         dob.setText(sp.getString(commanclass.DOB,""));
+
+        sgender=sp.getString(commanclass.GENDER,"");
+
+        if(sgender.equalsIgnoreCase("Male")){
+            male.setChecked(true);
+        }else if(sgender.equalsIgnoreCase("Female")){
+            female.setChecked(true);
+        }else{
+
+        }
+        scity=sp.getString(commanclass.CITY,"");
+        int icitypo=0;
+        for(int i=0 ; i<arrayList.size();i++){
+            if(scity.equalsIgnoreCase(arrayList.get(i))){
+                icitypo=i;
+            }
+        }
+        city.setSelection(icitypo);
 
     }
 }
