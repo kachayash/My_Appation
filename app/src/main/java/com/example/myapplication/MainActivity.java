@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,9 +14,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.snackbar.Snackbar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button login;
     EditText email,password;
-    TextView singup,singup2;
+    TextView singup,singup2,forget;
     String emailp="[a-zA-Z0-9.-]+@[a-z]+\\.+[a-z]+";
 
     SQLiteDatabase db;
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         sp=getSharedPreferences(commanclass.PREF,MODE_PRIVATE);
         remember=findViewById(R.id.main_checkbox);
 
+        forget=findViewById(R.id.main_forgetpassword);
 
         //image ppassword
         hide=findViewById(R.id.main_password_hideimg);
@@ -76,7 +73,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        forget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new commanmethod(MainActivity.this, forgetpassword.class);
+            }
+        });
 
         //DATABASE
         db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
@@ -140,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     System.out.println("success");
                     new commanmethod(MainActivity.this , "Login Succesfull");
-                    new commanmethod(MainActivity.this , Homepage.class);
+                    new commanmethod(MainActivity.this , deshbord.class);
                     }else{
                         new commanmethod(MainActivity.this,"Login Unsuccesfull");
                     }

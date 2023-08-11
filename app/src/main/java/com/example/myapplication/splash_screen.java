@@ -30,7 +30,7 @@ public class splash_screen extends AppCompatActivity {
                 if (sp.getString(commanclass.REMEMBER,"").equalsIgnoreCase("")){
                     new commanmethod(splash_screen.this,MainActivity.class);
                  }else {
-                    new commanmethod(splash_screen.this,Homepage.class);
+                    new commanmethod(splash_screen.this,deshbord.class);
                 }
             }
         },1500);

@@ -30,7 +30,7 @@ public class Homepage extends AppCompatActivity {
 
 
 
-    Button update,logout;
+    Button update,logout,edit;
 
     ImageView backbutton;
     EditText name,email,contact, dob;
@@ -64,6 +64,7 @@ public class Homepage extends AppCompatActivity {
         dob=findViewById(R.id.singup_dob_homepage);
         update=findViewById(R.id.update_button_homepage);
         logout=findViewById(R.id.logout_button_homepage);
+        edit=findViewById(R.id.edit_button_homepage);
         backbutton=findViewById(R.id.homepage_backbtn);
         sp=getSharedPreferences(commanclass.PREF,MODE_PRIVATE);
         male=findViewById(R.id.singup_male_homepage);
@@ -167,6 +168,16 @@ public class Homepage extends AppCompatActivity {
         String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
         db.execSQL(tableQuery);
 
+        //button
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setData(true);
+            }
+        });
+
+
 
         //logout
         logout.setOnClickListener(new View.OnClickListener() {
@@ -215,13 +226,24 @@ public class Homepage extends AppCompatActivity {
                 }
                 else {
 
-                    String select ="SELECT * FROM USER WHERE EMAIL='"+email.getText().toString()+"' AND CONTACT='"+contact.getText().toString()+"'";
+                    String select ="SELECT * FROM USER WHERE USERID='"+sp.getString(commanclass.ID,"")+"' ";
                     Cursor cursor=db.rawQuery(select,null);
                     if (cursor.getCount()>0){
-                        new commanmethod(Homepage.this ,"Email ID, Contact Number Alredy Registered" );
+                        String update="UPDATE USER SET NAME='"+name.getText().toString()+"',EMAIL='"+email.getText().toString()+"',CONTACT='"+contact.getText().toString()+"',GENDER='"+sgender+"',CITY='"+scity+"',DOB='"+dob.getText().toString()+"' WHERE USERID='"+sp.getString(commanclass.ID,"")+"'";
+                        db.execSQL(update);
+                        new commanmethod(Homepage.this,"Update Succesfully");
+                        //update sp
+                        sp.edit().putString(commanclass.NAME,name.getText().toString()).commit();
+                        sp.edit().putString(commanclass.EMAIL,email.getText().toString()).commit();
+                        sp.edit().putString(commanclass.CONTACT,contact.getText().toString()).commit();
+                        sp.edit().putString(commanclass.DOB,dob.getText().toString()).commit();
+                        sp.edit().putString(commanclass.GENDER,sgender).commit();
+                        sp.edit().putString(commanclass.CITY,scity).commit();
 
+                        setData(false);
                     }
                     else{
+                        new commanmethod(Homepage.this,"Invalid UserId");
 //                        String insertQuery ="INSERT INTO USER VALUES(NULL ,'"+name.getText().toString()+"' ,'"+email.getText().toString()+"' ,'"+contact.getText().toString()+"' ,'"+dob.getText().toString()+"' ,'"+scity+"' ,'"+sgender+"' )";
 //                        db.execSQL(insertQuery);
 //                        System.out.println("Signup Successfully");
@@ -241,10 +263,28 @@ public class Homepage extends AppCompatActivity {
             }
         });
 
-            setData();
+            setData(false);
     }
 
-    private void setData() {
+    private void setData(boolean isEnable) {
+        name.setEnabled(isEnable);
+        contact.setEnabled(isEnable);
+        email.setEnabled(isEnable);
+        dob.setEnabled(isEnable);
+
+        male.setEnabled(isEnable);
+        female.setEnabled(isEnable);
+
+        city.setEnabled(isEnable);
+
+        if(isEnable){
+            edit.setVisibility(View.GONE);
+            update.setVisibility(View.VISIBLE);
+        }
+        else{
+            edit.setVisibility(View.VISIBLE);
+            update.setVisibility(View.GONE);
+        }
 
         name.setText(sp.getString(commanclass.NAME,""));
         contact.setText(sp.getString(commanclass.CONTACT,""));
