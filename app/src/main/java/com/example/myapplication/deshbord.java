@@ -1,12 +1,14 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 
 public class deshbord extends AppCompatActivity {
+
 
     MeowBottomNavigation mbottom;
 
@@ -16,6 +18,7 @@ public class deshbord extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deshbord);
+
 
         mbottom=findViewById(R.id.dashbord_bottom_navigation);
 
@@ -30,8 +33,14 @@ public class deshbord extends AppCompatActivity {
             @Override
             public void onClickItem(MeowBottomNavigation.Model item) {
                 if(item.getId()==HOME_MENU){
+                    //fragment calll
+                    FragmentManager manager =getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.relative_dashbord,new HomeFragment()).commit();
+                    //end
                     mbottom.show(HOME_MENU,true);
                 } else if (item.getId()==PROFILE_MENU) {
+                    FragmentManager manager =getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.relative_dashbord,new update_activity()).commit();
                     mbottom.show(PROFILE_MENU,true);
 
                 }else if (item.getId()==SETTING){
@@ -55,8 +64,12 @@ public class deshbord extends AppCompatActivity {
                 // your codes
             }
         });
+        FragmentManager manager =getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.relative_dashbord,new HomeFragment()).commit();
 
         mbottom.show(HOME_MENU,true);
+
+
 
 
     }

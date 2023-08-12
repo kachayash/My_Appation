@@ -121,7 +121,7 @@ public class newpassword extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(newpassword.this , MainActivity.class);
+                new commanmethod(newpassword.this , LoginActivity.class);
             }
         });
 

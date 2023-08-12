@@ -3,13 +3,9 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.text.Layout;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,14 +17,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class create_singup extends AppCompatActivity {
+public class CreateAccount extends AppCompatActivity {
 
     TextView login1,login2;
 
@@ -76,7 +71,7 @@ public class create_singup extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_singup);
+        setContentView(R.layout.create_account);
 
         name=findViewById(R.id.createacc_enterfullname);
         email=findViewById(R.id.createacc_enteremailid);
@@ -96,7 +91,7 @@ public class create_singup extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int i) {
                 RadioButton radioButton = findViewById(i);//i=R.id.singup_male , R.id.singup_female;
                 sgender=radioButton.getText().toString();
-                new commanmethod(create_singup.this ,sgender);
+                new commanmethod(CreateAccount.this ,sgender);
             }
         });
 
@@ -131,7 +126,7 @@ public class create_singup extends AppCompatActivity {
 
 
 
-        ArrayAdapter adapter = new ArrayAdapter(create_singup.this, android.R.layout.simple_list_item_1 , arrayList);
+        ArrayAdapter adapter = new ArrayAdapter(CreateAccount.this, android.R.layout.simple_list_item_1 , arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
         city.setAdapter(adapter);
 
@@ -142,7 +137,7 @@ public class create_singup extends AppCompatActivity {
                     scity = "";
                 }else{
                     scity=arrayList.get(i);
-                    new commanmethod(create_singup.this , arrayList.get(i));
+                    new commanmethod(CreateAccount.this , arrayList.get(i));
                 }
             }
 
@@ -176,7 +171,7 @@ public class create_singup extends AppCompatActivity {
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(create_singup.this,dateclick,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CreateAccount.this,dateclick,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 //datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
@@ -224,11 +219,11 @@ public class create_singup extends AppCompatActivity {
                 }
                 //gender
                 else if (gender.getCheckedRadioButtonId() == -1) {
-                    new commanmethod(create_singup.this,"Please Select Gender");
+                    new commanmethod(CreateAccount.this,"Please Select Gender");
                 }
                 //city
                 else if(scity.equals("")){
-                    new commanmethod(create_singup.this,"Please Select City");
+                    new commanmethod(CreateAccount.this,"Please Select City");
                 }
 
                 //dob
@@ -240,7 +235,7 @@ public class create_singup extends AppCompatActivity {
                     String select ="SELECT * FROM USER WHERE EMAIL='"+email.getText().toString()+"' AND CONTACT='"+contact.getText().toString()+"'";
                     Cursor cursor=db.rawQuery(select,null);
                     if (cursor.getCount()>0){
-                        new commanmethod(create_singup.this ,"Email ID, Contact Number Alredy Registered" );
+                        new commanmethod(CreateAccount.this ,"Email ID, Contact Number Alredy Registered" );
 
                     }
                     else{
@@ -248,7 +243,7 @@ public class create_singup extends AppCompatActivity {
                     db.execSQL(insertQuery);
                     System.out.println("Signup Successfully");
                     //Toast.makeText(MainActivity.this, "Login Successfully", Toast.LENGTH_LONG).show();
-                    new commanmethod(create_singup.this, "Signup Successfully");
+                    new commanmethod(CreateAccount.this, "Signup Successfully");
                     /*Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                     startActivity(intent);*/
                     onBackPressed();
@@ -275,13 +270,13 @@ public class create_singup extends AppCompatActivity {
         login1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(create_singup.this , MainActivity.class);
+                new commanmethod(CreateAccount.this , LoginActivity.class);
             }
         });
         login2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(create_singup.this , MainActivity.class);
+                new commanmethod(CreateAccount.this , LoginActivity.class);
             }
         });
 

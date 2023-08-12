@@ -1,13 +1,17 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,14 +21,13 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Homepage extends AppCompatActivity {
+public class update_activity extends Fragment {
 
 
 
@@ -48,36 +51,39 @@ public class Homepage extends AppCompatActivity {
     SQLiteDatabase db;
     SharedPreferences sp;
 
+    public update_activity() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view= inflater.inflate(R.layout.update_actitvity, container, false);
 
 
 
-        name=findViewById(R.id.homepage_enterfullname);
-        email=findViewById(R.id.homepage_enteremailid);
-        contact=findViewById(R.id.homepage_enterphonenumber);
-        gender=findViewById(R.id.gender_homepage);
-        city=findViewById(R.id.spinner_singup_homepage);
-        dob=findViewById(R.id.singup_dob_homepage);
-        update=findViewById(R.id.update_button_homepage);
-        logout=findViewById(R.id.logout_button_homepage);
-        edit=findViewById(R.id.edit_button_homepage);
-        backbutton=findViewById(R.id.homepage_backbtn);
-        sp=getSharedPreferences(commanclass.PREF,MODE_PRIVATE);
-        male=findViewById(R.id.singup_male_homepage);
-        female=findViewById(R.id.singup_female_homepage);
+        name=view.findViewById(R.id.homepage_enterfullname);
+        email=view.findViewById(R.id.homepage_enteremailid);
+        contact=view.findViewById(R.id.homepage_enterphonenumber);
+        gender=view.findViewById(R.id.gender_homepage);
+        city=view.findViewById(R.id.spinner_singup_homepage);
+        dob=view.findViewById(R.id.singup_dob_homepage);
+        update=view.findViewById(R.id.update_button_homepage);
+        logout=view.findViewById(R.id.logout_button_homepage);
+        edit=view.findViewById(R.id.edit_button_homepage);
+        sp=getActivity().getSharedPreferences(commanclass.PREF, Context.MODE_PRIVATE);
+        male=view.findViewById(R.id.singup_male_homepage);
+        female=view.findViewById(R.id.singup_female_homepage);
 
 
         //Radio Button
         gender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int i) {
-                RadioButton radioButton = findViewById(i);//i=R.id.singup_male , R.id.singup_female;
+                RadioButton radioButton = view.findViewById(i);//i=R.id.singup_male , R.id.singup_female;
                 sgender=radioButton.getText().toString();
-                new commanmethod(Homepage.this ,sgender);
+                new commanmethod(getActivity() ,sgender);
             }
         });
 
@@ -112,7 +118,7 @@ public class Homepage extends AppCompatActivity {
 
 
 
-        ArrayAdapter adapter = new ArrayAdapter(Homepage.this, android.R.layout.simple_list_item_1 , arrayList);
+        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1 , arrayList);
         adapter.setDropDownViewResource(android.R.layout.simple_list_item_multiple_choice);
         city.setAdapter(adapter);
 
@@ -123,7 +129,7 @@ public class Homepage extends AppCompatActivity {
                     scity = "";
                 }else{
                     scity=arrayList.get(i);
-                    new commanmethod(Homepage.this , arrayList.get(i));
+                    new commanmethod(getActivity() , arrayList.get(i));
                 }
             }
 
@@ -157,14 +163,14 @@ public class Homepage extends AppCompatActivity {
         dob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Homepage.this,dateclick,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+                DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),dateclick,calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 //datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
                 datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
                 datePickerDialog.show();
             }
         });
         //DATABASE
-        db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
+        db=getActivity().openOrCreateDatabase("Shopping",Context.MODE_PRIVATE,null);
         String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
         db.execSQL(tableQuery);
 
@@ -184,7 +190,7 @@ public class Homepage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 sp.edit().clear().commit();
-                new commanmethod(Homepage.this,MainActivity.class);
+                new commanmethod(getActivity(), LoginActivity.class);
             }
         });
 
@@ -213,11 +219,11 @@ public class Homepage extends AppCompatActivity {
 
                 //gender
                 else if (gender.getCheckedRadioButtonId() == -1) {
-                    new commanmethod(Homepage.this,"Please Select Gender");
+                    new commanmethod(getActivity(),"Please Select Gender");
                 }
                 //city
                 else if(scity.equals("")){
-                    new commanmethod(Homepage.this,"Please Select City");
+                    new commanmethod(getActivity(),"Please Select City");
                 }
 
                 //dob
@@ -231,7 +237,7 @@ public class Homepage extends AppCompatActivity {
                     if (cursor.getCount()>0){
                         String update="UPDATE USER SET NAME='"+name.getText().toString()+"',EMAIL='"+email.getText().toString()+"',CONTACT='"+contact.getText().toString()+"',GENDER='"+sgender+"',CITY='"+scity+"',DOB='"+dob.getText().toString()+"' WHERE USERID='"+sp.getString(commanclass.ID,"")+"'";
                         db.execSQL(update);
-                        new commanmethod(Homepage.this,"Update Succesfully");
+                        new commanmethod(getActivity(),"Update Succesfully");
                         //update sp
                         sp.edit().putString(commanclass.NAME,name.getText().toString()).commit();
                         sp.edit().putString(commanclass.EMAIL,email.getText().toString()).commit();
@@ -243,7 +249,7 @@ public class Homepage extends AppCompatActivity {
                         setData(false);
                     }
                     else{
-                        new commanmethod(Homepage.this,"Invalid UserId");
+                        new commanmethod(getActivity(),"Invalid UserId");
 //                        String insertQuery ="INSERT INTO USER VALUES(NULL ,'"+name.getText().toString()+"' ,'"+email.getText().toString()+"' ,'"+contact.getText().toString()+"' ,'"+dob.getText().toString()+"' ,'"+scity+"' ,'"+sgender+"' )";
 //                        db.execSQL(insertQuery);
 //                        System.out.println("Signup Successfully");
@@ -256,14 +262,10 @@ public class Homepage extends AppCompatActivity {
 
 
         // backbutton
-        backbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+
 
             setData(false);
+            return  view;
     }
 
     private void setData(boolean isEnable) {
@@ -311,9 +313,5 @@ public class Homepage extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-//        super.onBackPressed();
-        finishAffinity();
-    }
+
 }

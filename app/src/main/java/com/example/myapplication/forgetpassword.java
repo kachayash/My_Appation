@@ -67,7 +67,7 @@ public class forgetpassword extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(forgetpassword.this,MainActivity.class);
+                new commanmethod(forgetpassword.this, LoginActivity.class);
             }
         });
     }

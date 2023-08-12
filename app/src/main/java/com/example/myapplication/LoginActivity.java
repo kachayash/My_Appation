@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
 
     Button login;
@@ -32,10 +32,12 @@ public class MainActivity extends AppCompatActivity {
     ImageView hide,viewimg;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_acitivity);
 
         login=findViewById(R.id.main_button);
 
@@ -76,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         forget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(MainActivity.this, forgetpassword.class);
+                new commanmethod(LoginActivity.this, forgetpassword.class);
             }
         });
 
@@ -141,10 +143,10 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                     System.out.println("success");
-                    new commanmethod(MainActivity.this , "Login Succesfull");
-                    new commanmethod(MainActivity.this , deshbord.class);
+                    new commanmethod(LoginActivity.this , "Login Succesfull");
+                    new commanmethod(LoginActivity.this , deshbord.class);
                     }else{
-                        new commanmethod(MainActivity.this,"Login Unsuccesfull");
+                        new commanmethod(LoginActivity.this,"Login Unsuccesfull");
                     }
                 }
             }
@@ -153,14 +155,14 @@ public class MainActivity extends AppCompatActivity {
         singup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(MainActivity.this , create_singup.class);
+                new commanmethod(LoginActivity.this , CreateAccount.class);
             }
         });
 
         singup2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new commanmethod(MainActivity.this , create_singup.class);
+                new commanmethod(LoginActivity.this , CreateAccount.class);
             }
         });
 

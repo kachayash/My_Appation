@@ -13,5 +13,11 @@ public class commanclass {
 
     public static String REMEMBER="remmember";
 
+    public static String PRODUCT_NAME="product_name";
+    public static String PRODUCT_IMAGE="product_image";
+    public static String PRODUCT_PRICE="product_price";
+    public static String PRODUCT_DESC="product_desc";
+    public static String PRODUCT_PRICE_SYMBOL="₹";
+
 
 }

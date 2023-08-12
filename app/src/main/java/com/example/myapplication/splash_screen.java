@@ -28,7 +28,7 @@ public class splash_screen extends AppCompatActivity {
             @Override
             public void run() {
                 if (sp.getString(commanclass.REMEMBER,"").equalsIgnoreCase("")){
-                    new commanmethod(splash_screen.this,MainActivity.class);
+                    new commanmethod(splash_screen.this, LoginActivity.class);
                  }else {
                     new commanmethod(splash_screen.this,deshbord.class);
                 }

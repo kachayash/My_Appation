@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="#201A30"
     tools:context=".deshbord">
 
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -12,12 +12,20 @@
         android:id="@+id/dashbord_bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:mbn_backgroundBottomColor="#201A30"
+        app:mbn_backgroundBottomColor="#81D4FA"
         app:mbn_circleColor="#ffffff"
         app:mbn_defaultIconColor="@color/white"
         app:mbn_rippleColor="#2f424242"
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/dashbord_bottom_navigation"
+        android:id="@+id/relative_dashbord"
+        />
 
 
 </RelativeLayout>
