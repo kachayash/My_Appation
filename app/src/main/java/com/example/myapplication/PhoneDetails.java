@@ -80,17 +80,18 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
 
             options.put("name", "Yash Kacha");
             options.put("description", "Reference No. #123456");
-            options.put("image", "https://s3.amazonaws.com/rzp-mobile/images/rzp.jpg");
-            options.put("order_id", "order_DBJOWzybf0sJbb");//from response of step 3.
+            options.put("image", R.drawable.my_img);
+            options.put("send_sms_hash", true);
+            options.put("allow_rotation", true);
             options.put("theme.color", "#3399cc");
-            options.put("currency", "INR");
-            options.put("amount", "50000");//pass amount in currency subunits
-            options.put("prefill.email", "gaurav.kumar@example.com");
-            options.put("prefill.contact","9988776655");
-            JSONObject retryObj = new JSONObject();
-            retryObj.put("enabled", true);
-            retryObj.put("max_count", 4);
-            options.put("retry", retryObj);
+            options.put("amount", Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE,""))*100);//pass amount in currency subunits
+
+
+            JSONObject pre = new JSONObject();
+            pre.put("email", sp.getString(commanclass.EMAIL,""));
+            pre.put("contact", sp.getString(commanclass.CONTACT,""));
+
+            options.put("pre",pre);
 
             checkout.open(activity, options);
 
@@ -110,3 +111,4 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
 
     }
 }
+
