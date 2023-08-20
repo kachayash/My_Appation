@@ -13,6 +13,8 @@ public class commanclass {
 
     public static String REMEMBER="remmember";
 
+    public static String PRODUCT_ID="product_id";
+
     public static String PRODUCT_NAME="product_name";
     public static String PRODUCT_IMAGE="product_image";
     public static String PRODUCT_PRICE="product_price";

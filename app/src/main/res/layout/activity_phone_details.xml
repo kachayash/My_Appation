@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".PhoneDetails"
     android:background="@color/white"
-    android:layout_marginBottom="20dp">
+    >
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,12 +15,52 @@
         android:orientation="vertical"
         android:background="@color/white">
 
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/layout_details"
+            >
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shoppingcartempty"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/cart_image_empty"
+                    />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/favoriteempty"
+                    android:layout_gravity="end"
+                    android:id="@+id/wish_image_empty"
+                    android:layout_marginRight="70dp"
+                    />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
     <ImageView
+
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:id="@+id/details_phone_image"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        android:layout_below="@id/layout_details"
+
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -60,6 +101,7 @@
             android:gravity="center"
             android:text="Buy Now"
             android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
             />
 </LinearLayout>
 </ScrollView>

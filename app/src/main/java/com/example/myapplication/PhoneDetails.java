@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +20,7 @@ import org.json.JSONObject;
 public class PhoneDetails extends AppCompatActivity  implements PaymentResultListener {
 
 
-    ImageView img;
+    ImageView img , cart,wish;
     TextView txt,price,desc;
 
     Button btn;
@@ -27,6 +28,8 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
     Checkout checkout;
 
     SharedPreferences sp;
+
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +42,42 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
         price=findViewById(R.id.details_phone_price);
         desc=findViewById(R.id.details_phone_details);
         btn=findViewById(R.id.buy_now_phonedesc);
+        cart=findViewById(R.id.cart_image_empty);
+        wish=findViewById(R.id.wish_image_empty);
 
 
         txt.setText(sp.getString(commanclass.PRODUCT_NAME,""));
         desc.setText(sp.getString(commanclass.PRODUCT_DESC,""));
         price.setText(commanclass.PRODUCT_PRICE_SYMBOL+sp.getString(commanclass.PRODUCT_PRICE,""));
         img.setImageResource(sp.getInt(commanclass.PRODUCT_IMAGE,0));
+
+        db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
+        db.execSQL(tableQuery);
+
+
+
+        String cartQuery = "CREATE TABLE IF NOT EXISTS CART (CARTID INTEGER PRIMARY KEY AUTOINCREMENT , ORDERID INTEGER(10) ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTDEC LONGTEXT , PRODUCTPRICE VARCHAR (20) , PRODUCTQTY INTEGER(10) ,TOTALPRICE VARCHAR(20))";
+        db.execSQL(cartQuery);
+
+
+//        String cartUp = "ALTER TABLE CART ADD  PRODUCTDEC LONGTEXT";
+//        db.execSQL(cartUp);
+
+
+        //cart
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int iQty=3;
+                int iTotalPrice= Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE,""))*iQty;
+                String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_DESC, "") + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "','" + iQty + "','" + iTotalPrice + "')";
+                db.execSQL(insertQuery);
+                new commanmethod(PhoneDetails.this,"Product Add in Cart");
+
+
+            }
+        });
 
 
         //pay online

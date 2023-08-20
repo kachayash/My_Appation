@@ -18,32 +18,16 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
 
     String[] phoneArray = {"Iphone" , "Realme" , "Oppo" ,"Mi" , "Redmi" , "Vivo" , "Samsung" ,"One plus"};
-    int[]    phone_imageArray={R.drawable.apple ,R.drawable.realme,R.drawable.oppo,R.drawable.mi,R.drawable.redmi,R.drawable.vivo,R.drawable.samsung,R.drawable.oneplus, };
+    int[] phone_imageArray={R.drawable.apple ,R.drawable.realme,R.drawable.oppo,R.drawable.mi,R.drawable.redmi,R.drawable.vivo,R.drawable.samsung,R.drawable.oneplus, };
 
     String[] priceArray={"8000","7000","6000","5000","4000","3000","2000","1000"};
 
     String [] phone_desc={
             //iphone
+
             "Operating System: iPhones run on Apple's proprietary operating system called iOS (iPhone Operating System). As of my last update, the latest version was iOS 15.\n" +
             "\n" +
-            "Design and Display: iPhones have evolved in terms of design and display technology over the years. They typically feature high-resolution Retina displays with various sizes and resolutions, offering a clear and vibrant visual experience.\n" +
-            "\n" +
-            "Performance: iPhones are known for their powerful hardware components, including Apple-designed processors (such as the A-series chips), which contribute to fast and smooth performance.\n" +
-            "\n" +
-            "Camera System: iPhones are renowned for their advanced camera systems that have improved over time. They offer features like Portrait Mode, Night Mode, and computational photography capabilities for enhanced photo quality.\n" +
-            "\n" +
-            "App Store: iPhones have access to the Apple App Store, which provides a wide range of applications for various purposes, including productivity, entertainment, social networking, and more.\n" +
-            "\n" +
-            "Connectivity: iPhones support various connectivity options, including Wi-Fi, cellular networks, Bluetooth, and NFC (Near Field Communication).\n" +
-            "\n" +
-            "Security: Apple places a strong emphasis on security and privacy. iPhones come with features like Face ID (facial recognition) and Touch ID (fingerprint recognition) for secure device access.\n" +
-            "\n" +
-            "Software Updates: Apple regularly releases software updates for iPhones to introduce new features, enhancements, and security fixes.\n" +
-            "\n" +
-            "Accessories and Ecosystem: iPhones are part of a larger ecosystem of Apple products and services, including iCloud for cloud storage, Apple Watch for health and fitness tracking, AirPods for wireless audio, and more.\n" +
-            "\n" +
-            "Model Range: iPhones come in various models, each catering to different price points and user needs. These include the standard iPhone models, the larger iPhone Plus and Pro models, and the smaller iPhone SE model.",
-
+            "Design and Display: iPhones have evolved in terms of design and display technology over the years. They typically feature high-resolution Retina displays with various sizes and resolutions, offering a clear and vibrant visual experience.",
             //Realme
 
             "Realme 8 Series: This series included phones like the Realme 8 and Realme 8 Pro. They featured AMOLED displays, powerful processors, quad-camera setups, and fast charging capabilities.\n" +
@@ -171,6 +155,10 @@ public class HomeFragment extends Fragment {
     };
 
 
+    String[] idArray={"1","2","3","4","5","6","7","8","9","10"};
+    RecyclerView cat;
+    String catnameArray[] = {"Phone" , "Grocery","Fashion","Electronics" ,"Accessories"};
+    int catImgArray[]={R.drawable.phone,R.drawable.grocery,R.drawable.shop,R.drawable.smarthome,R.drawable.phonecase};
 
 
     public HomeFragment() {
@@ -184,6 +172,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         recyclerView=view.findViewById(R.id.home_recycle);
+        cat=view.findViewById(R.id.home_recycle_category);
         //list
         //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -191,9 +180,16 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        PhoneAdapter adapter=new PhoneAdapter(getActivity(),phoneArray,phone_imageArray , priceArray,phone_desc);
+        cat.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
+        cat.setItemAnimator(new DefaultItemAnimator());
+
+        PhoneAdapter adapter=new PhoneAdapter(getActivity(),phoneArray,phone_imageArray , priceArray,phone_desc,idArray );
         recyclerView.setAdapter(adapter);
+
+        CategoryAdapter catadpater = new CategoryAdapter (getActivity(),catImgArray,catnameArray);
+        cat.setAdapter(catadpater);
         return  view;
+
 
     }
 }

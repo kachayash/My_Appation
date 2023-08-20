@@ -13,19 +13,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyHolder> {
-    SharedPreferences sp;
+        SharedPreferences sp;
 
-    Context context;
+        Context context;
     String[] phoneArray;
     String[] priceArray;
     String[] phone_desc;
+    String[] idArray;
+
+
     int[] phone_imageArray;
-    public PhoneAdapter(Context context, String[] phoneArray, int[] phone_imageArray, String[] priceArray, String[] phone_desc) {
+    public PhoneAdapter(Context context, String[] phoneArray, int[] phone_imageArray, String[] priceArray, String[] phone_desc, String[] idArray) {
             this.context = context;
             this.phoneArray=phoneArray;
             this.phone_imageArray=phone_imageArray;
             this.priceArray=priceArray;
             this.phone_desc=phone_desc;
+            this.idArray=idArray;
             sp= context.getSharedPreferences(commanclass.PREF,Context.MODE_PRIVATE);
 
     }
@@ -65,8 +69,7 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.MyHolder> {
                 sp.edit().putString(commanclass.PRODUCT_PRICE,priceArray[position]).commit();
                 sp.edit().putString(commanclass.PRODUCT_DESC,phone_desc[position]).commit();
                 sp.edit().putInt(commanclass.PRODUCT_IMAGE,phone_imageArray[position]).commit();
-
-
+                sp.edit().putString(commanclass.PRODUCT_ID,idArray[position]).commit();
                 new commanmethod(context,PhoneDetails.class);
             }
         });
