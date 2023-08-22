@@ -12,7 +12,7 @@ public class deshbord extends AppCompatActivity {
 
     MeowBottomNavigation mbottom;
 
-    int HOME_MENU=1,PROFILE_MENU=2,SETTING=3,THREE_DOT=4;
+    int HOME_MENU=1,PROFILE_MENU=2,CART=3,WISH=4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,9 @@ public class deshbord extends AppCompatActivity {
 
         mbottom.add(new MeowBottomNavigation.Model(HOME_MENU,R.drawable.baseline_home_24));
         mbottom.add(new MeowBottomNavigation.Model(PROFILE_MENU,R.drawable.ic_user));
-        mbottom.add(new MeowBottomNavigation.Model(SETTING,R.drawable.ic_setting));
-        mbottom.add(new MeowBottomNavigation.Model(THREE_DOT,R.drawable.ic_menu));
+        mbottom.add(new MeowBottomNavigation.Model(CART,R.drawable.shoppingcartfull));
+        mbottom.add(new MeowBottomNavigation.Model(WISH,R.drawable.favoritefull));
+
 
 
 
@@ -43,10 +44,14 @@ public class deshbord extends AppCompatActivity {
                     manager.beginTransaction().replace(R.id.relative_dashbord,new update_activity()).commit();
                     mbottom.show(PROFILE_MENU,true);
 
-                }else if (item.getId()==SETTING){
-                    mbottom.show(SETTING,true);
-                }else if (item.getId()==THREE_DOT){
-                    mbottom.show(THREE_DOT,true);
+                }else if (item.getId()==CART){
+                    FragmentManager manager =getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.relative_dashbord,new CartFragment()).commit();
+                    mbottom.show(CART,true);
+                }else if (item.getId()==WISH){
+                    FragmentManager manager =getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.relative_dashbord,new WishFragment()).commit();
+                    mbottom.show(WISH,true);
                 }
             }
         });

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,24 +58,58 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
 
 
 
-        String cartQuery = "CREATE TABLE IF NOT EXISTS CART (CARTID INTEGER PRIMARY KEY AUTOINCREMENT , ORDERID INTEGER(10) ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTDEC LONGTEXT , PRODUCTPRICE VARCHAR (20) , PRODUCTQTY INTEGER(10) ,TOTALPRICE VARCHAR(20))";
+
+        String cartQuery = "CREATE TABLE IF NOT EXISTS CART (CARTID INTEGER PRIMARY KEY AUTOINCREMENT , ORDERID INTEGER(10) ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,PRODUCTDESC VARCHAR(2000), PRODUCTQTY INTEGER(10) ,TOTALPRICE VARCHAR(20))";
         db.execSQL(cartQuery);
 
 
-//        String cartUp = "ALTER TABLE CART ADD  PRODUCTDEC LONGTEXT";
-//        db.execSQL(cartUp);
+//        String d= "DROP TABLE CART";
+//        db.execSQL(d);
+
+
+        String wishQuery = "CREATE TABLE IF NOT EXISTS WISH (wishID INTEGER PRIMARY KEY AUTOINCREMENT ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,  PRODUCTDESC VARCHAR(2000))";
+        db.execSQL(wishQuery);
+
+//        String d= "DROP TABLE WISH";
+//        db.execSQL(d);
+
+
 
 
         //cart
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int iQty=3;
-                int iTotalPrice= Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE,""))*iQty;
-                String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_DESC, "") + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "','" + iQty + "','" + iTotalPrice + "')";
-                db.execSQL(insertQuery);
-                new commanmethod(PhoneDetails.this,"Product Add in Cart");
+                String select ="SELECT * FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'AND ORDERID='0'";
+                Cursor cursor=db.rawQuery(select,null);
+                if (cursor.getCount()>0){
+                    new commanmethod(PhoneDetails.this,"Product Alredy Added");
+                }
+                else {
+                    int iQty = 3;
+                    int iTotalPrice = Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE, "")) * iQty;
+                    String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "','"+sp.getString(commanclass.PRODUCT_DESC,"")+"','" + iQty + "','" + iTotalPrice + "')";
+                    db.execSQL(insertQuery);
+                    new commanmethod(PhoneDetails.this, "Product Add in Cart");
+                }
 
+            }
+        });
+
+
+        wish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String selectt ="SELECT * FROM WISH WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+                Cursor cursor=db.rawQuery(selectt,null);
+                if (cursor.getCount()>0){
+                    new commanmethod(PhoneDetails.this,"Product Alredy Added");
+                }
+                else {
+                    String insertQueryt = "INSERT INTO WISH VALUES(NULL,'" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "' , '"+sp.getString(commanclass.PRODUCT_DESC,"")+"')";
+                    db.execSQL(insertQueryt);
+                    new commanmethod(PhoneDetails.this, "Product Add in Wish");
+                }
 
             }
         });
