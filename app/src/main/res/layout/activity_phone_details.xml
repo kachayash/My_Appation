@@ -32,6 +32,15 @@
                     android:layout_marginRight="20dp"
                     android:id="@+id/cart_image_empty"
                     />
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shoppingcartfull"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/cart_image_full"
+                    />
 
             </FrameLayout>
 
@@ -45,6 +54,16 @@
                     android:layout_gravity="end"
                     android:id="@+id/wish_image_empty"
                     android:layout_marginRight="70dp"
+                    />
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/favoritefull"
+                    android:layout_gravity="end"
+                    android:layout_marginRight="70dp"
+                    android:id="@+id/wish_image_full"
+
                     />
 
             </FrameLayout>

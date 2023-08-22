@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -53,7 +54,7 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.MyHolder> {
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-//            deleteIv = itemView.findViewById(R.id.custom_wishlist_delete);
+            deleteIv = itemView.findViewById(R.id.delete_btn);
             imageView = itemView.findViewById(R.id.card_image);
             name = itemView.findViewById(R.id.card_text);
             price = itemView.findViewById(R.id.card_text_price);
@@ -62,7 +63,7 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.MyHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.imageView.setImageResource(Integer.parseInt(arrayList.get(position).getProductimg()));
         holder.name.setText(arrayList.get(position).getProductname());
         holder.price.setText(commanclass.PRODUCT_PRICE_SYMBOL+arrayList.get(position).getProductprice());
@@ -78,6 +79,16 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.MyHolder> {
             }
         });
 
+        holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String deleteQ="DELETE FROM WISH WHERE wishID='"+arrayList.get(position).getWishlistid()+"'";
+                db.execSQL(deleteQ);
+                new commanmethod(context,"Remove from cart");
+                arrayList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 //
 
     }

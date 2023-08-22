@@ -21,7 +21,7 @@ import org.json.JSONObject;
 public class PhoneDetails extends AppCompatActivity  implements PaymentResultListener {
 
 
-    ImageView img , cart,wish;
+    ImageView img , cart,wish , cartf,wishf;
     TextView txt,price,desc;
 
     Button btn;
@@ -44,39 +44,45 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
         desc=findViewById(R.id.details_phone_details);
         btn=findViewById(R.id.buy_now_phonedesc);
         cart=findViewById(R.id.cart_image_empty);
+        cartf=findViewById(R.id.cart_image_full);
         wish=findViewById(R.id.wish_image_empty);
+        wishf=findViewById(R.id.wish_image_full);
 
-
-        txt.setText(sp.getString(commanclass.PRODUCT_NAME,""));
-        desc.setText(sp.getString(commanclass.PRODUCT_DESC,""));
-        price.setText(commanclass.PRODUCT_PRICE_SYMBOL+sp.getString(commanclass.PRODUCT_PRICE,""));
-        img.setImageResource(sp.getInt(commanclass.PRODUCT_IMAGE,0));
 
         db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
         String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
         db.execSQL(tableQuery);
 
-
-
-
         String cartQuery = "CREATE TABLE IF NOT EXISTS CART (CARTID INTEGER PRIMARY KEY AUTOINCREMENT , ORDERID INTEGER(10) ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,PRODUCTDESC VARCHAR(2000), PRODUCTQTY INTEGER(10) ,TOTALPRICE VARCHAR(20))";
         db.execSQL(cartQuery);
-
-
-//        String d= "DROP TABLE CART";
-//        db.execSQL(d);
-
 
         String wishQuery = "CREATE TABLE IF NOT EXISTS WISH (wishID INTEGER PRIMARY KEY AUTOINCREMENT ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,  PRODUCTDESC VARCHAR(2000))";
         db.execSQL(wishQuery);
 
-//        String d= "DROP TABLE WISH";
-//        db.execSQL(d);
 
+        String selectQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+        Cursor cursor = db.rawQuery(selectQuery,null);
+        if(cursor.getCount()>0){
+            cart.setVisibility(View.GONE);
+            cartf.setVisibility(View.VISIBLE);
+        }
+        else {
+            cart.setVisibility(View.VISIBLE);
+            cartf.setVisibility(View.GONE);
+        }
 
-
-
+        cartf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String deletc="DELETE FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+                db.execSQL(deletc);
+                new commanmethod(PhoneDetails.this , "Remove Item in Cart");
+                cart.setVisibility(View.VISIBLE);
+                cartf.setVisibility(View.GONE);
+            }
+        });
         //cart
+
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,15 +97,45 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
                     String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "','"+sp.getString(commanclass.PRODUCT_DESC,"")+"','" + iQty + "','" + iTotalPrice + "')";
                     db.execSQL(insertQuery);
                     new commanmethod(PhoneDetails.this, "Product Add in Cart");
+                    cart.setVisibility(View.GONE);
+                    cartf.setVisibility(View.VISIBLE);
                 }
-
             }
         });
 
 
+        //wish
+
+        String selectQueryw = "SELECT * FROM WISH WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+        Cursor cursorw = db.rawQuery(selectQueryw,null);
+        if(cursorw.getCount()>0){
+            wish.setVisibility(View.GONE);
+            wishf.setVisibility(View.VISIBLE);
+        }
+        else {
+            wish.setVisibility(View.VISIBLE);
+            wishf.setVisibility(View.GONE);
+        }
+
+        wishf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String deletw="DELETE FROM WISH WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+                db.execSQL(deletw);
+                new commanmethod(PhoneDetails.this , "Remove Item in Cart");
+                wish.setVisibility(View.VISIBLE);
+                wishf.setVisibility(View.GONE);
+
+            }
+
+
+        });
         wish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 String selectt ="SELECT * FROM WISH WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
                 Cursor cursor=db.rawQuery(selectt,null);
                 if (cursor.getCount()>0){
@@ -109,10 +145,19 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
                     String insertQueryt = "INSERT INTO WISH VALUES(NULL,'" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "' , '"+sp.getString(commanclass.PRODUCT_DESC,"")+"')";
                     db.execSQL(insertQueryt);
                     new commanmethod(PhoneDetails.this, "Product Add in Wish");
+                    wish.setVisibility(View.GONE);
+                    wishf.setVisibility(View.VISIBLE);
                 }
 
             }
         });
+
+
+        txt.setText(sp.getString(commanclass.PRODUCT_NAME,""));
+        desc.setText(sp.getString(commanclass.PRODUCT_DESC,""));
+        price.setText(commanclass.PRODUCT_PRICE_SYMBOL+sp.getString(commanclass.PRODUCT_PRICE,""));
+        img.setImageResource(sp.getInt(commanclass.PRODUCT_IMAGE,0));
+
 
 
         //pay online

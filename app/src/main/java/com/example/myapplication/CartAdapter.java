@@ -53,7 +53,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-//            deleteIv = itemView.findViewById(R.id.custom_wishlist_delete);
+            deleteIv = itemView.findViewById(R.id.delete_btn);
             imageView = itemView.findViewById(R.id.card_image);
             name = itemView.findViewById(R.id.card_text);
             price = itemView.findViewById(R.id.card_text_price);
@@ -77,7 +77,16 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
                 new commanmethod(context, PhoneDetails.class);
             }
         });
-
+        holder.deleteIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String deleteQ="DELETE FROM CART WHERE CARTID='"+arrayList.get(position).getCartlistid()+"'";
+                db.execSQL(deleteQ);
+                new commanmethod(context,"Remove from cart");
+                arrayList.remove(position);
+                notifyDataSetChanged();
+            }
+        });
 //
 
     }
