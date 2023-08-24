@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -23,6 +24,9 @@ public class CartFragment extends Fragment {
 
     RecyclerView recyclerView;
     ArrayList<Cartlist> arrayList;
+
+    public  static  Button check;
+    public  static  int Totalp=0;
 
     SQLiteDatabase db;
     SharedPreferences sp;
@@ -51,6 +55,7 @@ public class CartFragment extends Fragment {
         sp = getActivity().getSharedPreferences(commanclass.PREF,Context.MODE_PRIVATE);
 
         recyclerView = view.findViewById(R.id.cart_recyclerview);
+        check=view.findViewById(R.id.checkt_cart);
 
         //Display Data In List
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -60,6 +65,7 @@ public class CartFragment extends Fragment {
         String selectQuery = "SELECT * FROM CART WHERE USERID='" + sp.getString(commanclass.ID, "") + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.getCount() > 0) {
+            check.setVisibility(View.VISIBLE);
             arrayList = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Cartlist list = new Cartlist();
@@ -69,10 +75,19 @@ public class CartFragment extends Fragment {
                 list.setProductimg(cursor.getString(5));
                 list.setProductdesc(cursor.getString(7));
                 list.setProductprice(cursor.getString(6));
+                list.setTotalprice(cursor.getString(9));
+                list.setProductqyt(cursor.getString(8));
+
                 arrayList.add(list);
+
+                Totalp += Integer.parseInt(cursor.getString(9));
             }
             CartAdapter adapter = new CartAdapter(getActivity(), arrayList);
             recyclerView.setAdapter(adapter);
+
+            check.setText("Checkout"+commanclass.PRODUCT_PRICE_SYMBOL+Totalp);
+        }else{
+            check.setVisibility(View.GONE);
         }
 
         return view;

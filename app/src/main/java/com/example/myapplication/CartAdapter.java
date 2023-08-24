@@ -49,7 +49,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
     public class MyHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView,deleteIv;
-        TextView name,price;
+        TextView name,price,total;
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +57,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
             imageView = itemView.findViewById(R.id.card_image);
             name = itemView.findViewById(R.id.card_text);
             price = itemView.findViewById(R.id.card_text_price);
+            total=itemView.findViewById(R.id.card_text_price_total);
 
         }
     }
@@ -66,6 +67,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
         holder.imageView.setImageResource(Integer.parseInt(arrayList.get(position).getProductimg()));
         holder.name.setText(arrayList.get(position).getProductname());
         holder.price.setText(commanclass.PRODUCT_PRICE_SYMBOL+arrayList.get(position).getProductprice());
+        holder.total.setText(commanclass.PRODUCT_PRICE_SYMBOL+arrayList.get(position).getTotalprice());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,8 +85,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyHolder> {
                 String deleteQ="DELETE FROM CART WHERE CARTID='"+arrayList.get(position).getCartlistid()+"'";
                 db.execSQL(deleteQ);
                 new commanmethod(context,"Remove from cart");
+                CartFragment.Totalp -= Integer.parseInt(arrayList.get(position).getTotalprice());
+                CartFragment.check.setText("Checkout"+commanclass.PRODUCT_PRICE_SYMBOL+CartFragment.Totalp);
+
+                if(CartFragment.Totalp==0){
+                    CartFragment.check.setVisibility(View.GONE);
+                }else{
+                    CartFragment.check.setVisibility(View.VISIBLE);
+                }
                 arrayList.remove(position);
                 notifyDataSetChanged();
+
+
             }
         });
 //

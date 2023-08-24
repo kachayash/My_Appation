@@ -49,5 +49,28 @@ public class Cartlist {
         this.productprice = productprice;
     }
 
-    String cartlistid , productid,productname,productimg,productdesc,productprice;
+    String cartlistid;
+    String productid;
+    String productname;
+    String productimg;
+    String productdesc;
+    String productprice;
+
+    public String getTotalprice() {
+        return totalprice;
+    }
+
+    public void setTotalprice(String totalprice) {
+        this.totalprice = totalprice;
+    }
+
+    String totalprice , productqyt;
+
+    public String getProductqyt() {
+        return productqyt;
+    }
+
+    public void setProductqyt(String productqyt) {
+        this.productqyt = productqyt;
+    }
 }
