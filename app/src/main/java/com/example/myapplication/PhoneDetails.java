@@ -18,7 +18,7 @@ import com.razorpay.PaymentResultListener;
 
 import org.json.JSONObject;
 
-public class PhoneDetails extends AppCompatActivity  implements PaymentResultListener {
+public class PhoneDetails extends AppCompatActivity   {
 
 
     ImageView img , cart,wish , cartf,wishf;
@@ -26,7 +26,7 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
 
     Button btn;
 
-    Checkout checkout;
+
 
     SharedPreferences sp;
 
@@ -92,7 +92,7 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
                     new commanmethod(PhoneDetails.this,"Product Alredy Added");
                 }
                 else {
-                    int iQty = 3;
+                    int iQty = 1;
                     int iTotalPrice = Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE, "")) * iQty;
                     String insertQuery = "INSERT INTO CART VALUES(NULL,'0','" + sp.getString(commanclass.ID, "") + "','" + sp.getString(commanclass.PRODUCT_ID, "") + "','" + sp.getString(commanclass.PRODUCT_NAME, "") + "','" + sp.getInt(commanclass.PRODUCT_IMAGE, 0) + "','" + sp.getString(commanclass.PRODUCT_PRICE, "") + "','"+sp.getString(commanclass.PRODUCT_DESC,"")+"','" + iQty + "','" + iTotalPrice + "')";
                     db.execSQL(insertQuery);
@@ -164,64 +164,60 @@ public class PhoneDetails extends AppCompatActivity  implements PaymentResultLis
 
 
 
-        Checkout.preload(getApplicationContext());
 
 
-        checkout = new Checkout();
-
-        checkout.setKeyID("rzp_test_Qv5hwbn2kL56Z7");
 
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                startPayment();
+              new commanmethod (PhoneDetails.this , order.class);
             }
         });
     }
-
-    private void startPayment() {
-
-        final Activity activity = this;
-
-        /**
-         * Pass your payment options to the Razorpay Checkout as a JSONObject
-         */
-        try {
-            JSONObject options = new JSONObject();
-
-            options.put("name", "Yash Kacha");
-            options.put("description", "Reference No. #123456");
-            options.put("image", R.drawable.my_img);
-            options.put("send_sms_hash", true);
-            options.put("allow_rotation", true);
-            options.put("theme.color", "#3399cc");
-            options.put("amount", Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE,""))*100);//pass amount in currency subunits
-
-
-            JSONObject pre = new JSONObject();
-            pre.put("email", sp.getString(commanclass.EMAIL,""));
-            pre.put("contact", sp.getString(commanclass.CONTACT,""));
-
-            options.put("pre",pre);
-
-            checkout.open(activity, options);
-
-        } catch(Exception e) {
-            Log.e("RESPONCE", "Error in starting Razorpay Checkout", e);
-        }
-    }
-
-    @Override
-    public void onPaymentSuccess(String s) {
-        new commanmethod(PhoneDetails.this ,"Payment Success");
-    }
-
-    @Override
-    public void onPaymentError(int i, String s) {
-        new commanmethod(PhoneDetails.this ,"Payment Faild");
-
-    }
+//
+//    private void startPayment() {
+//
+//        final Activity activity = this;
+//
+//        /**
+//         * Pass your payment options to the Razorpay Checkout as a JSONObject
+//         */
+//        try {
+//            JSONObject options = new JSONObject();
+//
+//            options.put("name", "Yash Kacha");
+//            options.put("description", "Reference No. #123456");
+//            options.put("image", R.drawable.my_img);
+//            options.put("send_sms_hash", true);
+//            options.put("allow_rotation", true);
+//            options.put("theme.color", "#3399cc");
+//            options.put("amount", Integer.parseInt(sp.getString(commanclass.PRODUCT_PRICE,""))*100);//pass amount in currency subunits
+//
+//
+//            JSONObject pre = new JSONObject();
+//            pre.put("email", sp.getString(commanclass.EMAIL,""));
+//            pre.put("contact", sp.getString(commanclass.CONTACT,""));
+//
+//            options.put("pre",pre);
+//
+//            checkout.open(activity, options);
+//
+//        } catch(Exception e) {
+//            Log.e("RESPONCE", "Error in starting Razorpay Checkout", e);
+//        }
+//    }
+//
+//    @Override
+//    public void onPaymentSuccess(String s) {
+//        new commanmethod(PhoneDetails.this ,"Payment Success");
+//    }
+//
+//    @Override
+//    public void onPaymentError(int i, String s) {
+//        new commanmethod(PhoneDetails.this ,"Payment Faild");
+//
+//    }
 }
 

@@ -2,4 +2,13 @@
     <string name="app_name">My Application</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="countryname">
+        <item>Select Country</item>
+        <item>India</item>
+        <item>China</item>
+        <item>Indonesia</item>
+        <item>Pakistan</item>
+        <item>United States</item>
+    </string-array>
 </resources>

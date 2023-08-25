@@ -45,6 +45,7 @@ public class deshbord extends AppCompatActivity {
                     mbottom.show(PROFILE_MENU,true);
 
                 }else if (item.getId()==CART){
+                    CartFragment.Totalp=0;
                     FragmentManager manager =getSupportFragmentManager();
                     manager.beginTransaction().replace(R.id.relative_dashbord,new CartFragment()).commit();
                     mbottom.show(CART,true);

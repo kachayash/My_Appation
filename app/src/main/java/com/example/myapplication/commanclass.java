@@ -20,6 +20,9 @@ public class commanclass {
     public static String PRODUCT_PRICE="product_price";
     public static String PRODUCT_DESC="product_desc";
     public static String PRODUCT_PRICE_SYMBOL="₹";
+    public static String TotalPrice="Totalp";
+
+    public  static  String ORDER_ID="order_id";
 
 
 }

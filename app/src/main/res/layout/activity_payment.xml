@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#DDDDDD"
+    tools:context=".payment">
+
+    <ImageView
+        android:id="@+id/backerror_payment"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/baseline_keyboard_backspace_24"
+        />
+    <TextView
+        android:id="@+id/payment_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/backerror_payment"
+        android:layout_marginTop="20dp"
+        android:text="Select a Payment Method"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+
+        />
+
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radiogroup_pyt"
+        android:layout_below="@id/payment_text1"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Recommended"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:id="@id/text2"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_below="@id/text2"
+            android:textColor="@color/black"
+            android:text="UPI Apps"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/upi_radio"
+            android:drawableRight="@drawable/upi"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other Methods"
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:id="@+id/text3"
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:layout_below="@id/text3"
+            android:textColor="@color/black"
+            android:text="Credit or Debit Card"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/cardit_card_radio"
+            android:drawableRight="@drawable/carditcard"
+
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:padding="10dp"
+            android:layout_below="@id/cardit_card_radio"
+            android:textColor="@color/black"
+            android:text="EMI"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/emi_radio"
+            android:drawableRight="@drawable/emi"
+
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:padding="10dp"
+            android:layout_below="@id/emi_radio"
+            android:textColor="@color/black"
+            android:text="Net Banking"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/netbanking_radio"
+            android:drawableRight="@drawable/netbanking"
+
+
+            />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:padding="10dp"
+            android:layout_below="@id/netbanking_radio"
+            android:textColor="@color/black"
+            android:text="Razorpay"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/razorpay_radio"
+            android:drawableRight="@drawable/razorpay"
+
+            />
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp"
+            android:padding="10dp"
+            android:layout_below="@id/razorpay_radio"
+            android:textColor="@color/black"
+            android:text="Cash on Delivery"
+            android:textSize="20dp"
+            android:buttonTint="@color/black"
+            android:background="@drawable/radio_back"
+            android:id="@+id/cod_radio"
+            android:drawableRight="@drawable/cod2"
+
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/continue_btn"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/radiogroup_pyt"
+        android:text="Continue"
+        android:background="@drawable/order_buttton_design"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        />
+</RelativeLayout>

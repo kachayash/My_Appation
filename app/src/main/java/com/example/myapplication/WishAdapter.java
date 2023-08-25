@@ -43,7 +43,7 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.MyHolder> {
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_cart, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.custom_wish, parent, false);
         return new MyHolder(view);
     }
 
@@ -54,10 +54,10 @@ public class WishAdapter extends RecyclerView.Adapter<WishAdapter.MyHolder> {
 
         public MyHolder(@NonNull View itemView) {
             super(itemView);
-            deleteIv = itemView.findViewById(R.id.delete_btn);
-            imageView = itemView.findViewById(R.id.card_image);
-            name = itemView.findViewById(R.id.card_text);
-            price = itemView.findViewById(R.id.card_text_price);
+            deleteIv = itemView.findViewById(R.id.delete_btn_wish);
+            imageView = itemView.findViewById(R.id.card_image_wish);
+            name = itemView.findViewById(R.id.card_text_wish);
+            price = itemView.findViewById(R.id.card_text_price_wish);
 
         }
     }

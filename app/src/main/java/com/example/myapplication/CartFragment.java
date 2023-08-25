@@ -81,6 +81,7 @@ public class CartFragment extends Fragment {
                 arrayList.add(list);
 
                 Totalp += Integer.parseInt(cursor.getString(9));
+                sp.edit().putString(commanclass.TotalPrice, String.valueOf(Totalp)).commit();
             }
             CartAdapter adapter = new CartAdapter(getActivity(), arrayList);
             recyclerView.setAdapter(adapter);
@@ -89,6 +90,13 @@ public class CartFragment extends Fragment {
         }else{
             check.setVisibility(View.GONE);
         }
+
+        check.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new commanmethod(getActivity() , order.class);
+            }
+        });
 
         return view;
     }
