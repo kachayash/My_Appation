@@ -60,7 +60,7 @@ public class PhoneDetails extends AppCompatActivity   {
         db.execSQL(wishQuery);
 
 
-        String selectQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+        String selectQuery = "SELECT * FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'AND ORDERID='0'";
         Cursor cursor = db.rawQuery(selectQuery,null);
         if(cursor.getCount()>0){
             cart.setVisibility(View.GONE);
@@ -74,7 +74,7 @@ public class PhoneDetails extends AppCompatActivity   {
         cartf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String deletc="DELETE FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'";
+                String deletc="DELETE FROM CART WHERE USERID='"+sp.getString(commanclass.ID,"")+"' AND PRODUCTID='"+sp.getString(commanclass.PRODUCT_ID,"")+"'AND ORDERID='0'";
                 db.execSQL(deletc);
                 new commanmethod(PhoneDetails.this , "Remove Item in Cart");
                 cart.setVisibility(View.VISIBLE);

@@ -36,7 +36,18 @@ public class payment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
+        db=openOrCreateDatabase("Shopping",MODE_PRIVATE,null);
+        String order = "CREATE TABLE IF NOT EXISTS ORDERADDRESS(ORDERA INTEGER PRIMARY KEY AUTOINCREMENT ,USERID INTEGER (10),CONUNTRY VARCHAR(20),STATE VARCHAR(20),CITY VARCHAR(30) , NAME VARCHAR(20) , CONTACT VARCHAR(10) , AREA VARCHAR(40) , LANDMARK VARCHAR(40) , PINCODE VARCHAR(6) , PAYMENTMETHOD VARCHAR(30) )";
+        db.execSQL(order);
 
+        String tableQuery = "CREATE TABLE IF NOT EXISTS USER( USERID INTEGER PRIMARY KEY AUTOINCREMENT,NAME VARCHAR(30), EMAIL VARCHAR(30) ,CONTACT INT(10) , PASSWORD VARCHAR(20), CONFPASS VARCHAR(20), DOB VARCHAR(10) ,CITY VARCHAR(20) , GENDER VARCHAR(6))";
+        db.execSQL(tableQuery);
+
+        String cartQuery = "CREATE TABLE IF NOT EXISTS CART (CARTID INTEGER PRIMARY KEY AUTOINCREMENT , ORDERID INTEGER(10) ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,PRODUCTDESC VARCHAR(2000), PRODUCTQTY INTEGER(10) ,TOTALPRICE VARCHAR(20))";
+        db.execSQL(cartQuery);
+
+        String wishQuery = "CREATE TABLE IF NOT EXISTS WISH (wishID INTEGER PRIMARY KEY AUTOINCREMENT ,USERID INTEGER (10), PRODUCTID INTEGER(10) , PRODUCTNAME VARCHAR(30) , PRODUCTIMG VARCHAR(100) , PRODUCTPRICE VARCHAR (20) ,  PRODUCTDESC VARCHAR(2000))";
+        db.execSQL(wishQuery);
         Checkout.preload(getApplicationContext());
         checkout = new Checkout();
         checkout.setKeyID("rzp_test_Qv5hwbn2kL56Z7");
@@ -66,28 +77,28 @@ public class payment extends AppCompatActivity {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new commanmethod(payment.this , "Not Available");
+                            new commanmethod(payment.this , paymentdone.class);
                         }
                     });
                 }else if (i==R.id.cardit_card_radio){
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new commanmethod(payment.this , "Not Available");
+                            new commanmethod(payment.this , paymentdone.class);
                         }
                     });
                 }else if (i==R.id.emi_radio){
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new commanmethod(payment.this , "Not Available");
+                            new commanmethod(payment.this , paymentdone.class);
                         }
                     });
                 }else if (i==R.id.netbanking_radio){
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new commanmethod(payment.this , "Not Available");
+                            new commanmethod(payment.this , paymentdone.class);
                         }
                     });
                 }else if (i==R.id.razorpay_radio){
@@ -101,15 +112,14 @@ public class payment extends AppCompatActivity {
                     btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new commanmethod(payment.this , "Not Available");
+                            new commanmethod(payment.this , paymentdone.class);
                         }
                     });
                 }
+
             }
         });
-
-
-    }
+        }
     private void startPayment() {
 
         final Activity activity = this;
@@ -119,11 +129,11 @@ public class payment extends AppCompatActivity {
 
             options.put("name", "Yash Kacha");
             options.put("description", "Reference No. #123456");
-            options.put("image", R.drawable.my_img);
+            options.put("image", R.drawable.upi);
             options.put("send_sms_hash", true);
             options.put("allow_rotation", true);
             options.put("theme.color", "#3399cc");
-            options.put("amount", Integer.parseInt(sp.getString(commanclass.TotalPrice,""))*100);//pass amount in currency subunits
+            options.put("amount", CartFragment.Totalp*100);//pass amount in currency subunits
 
 
             JSONObject pre = new JSONObject();
@@ -140,7 +150,7 @@ public class payment extends AppCompatActivity {
     }
 
     public void onPaymentSuccess(String s) {
-        new commanmethod(payment.this ,"Payment Success");
+        new commanmethod(payment.this , paymentdone.class);
     }
 
     public void onPaymentError(int i, String s) {

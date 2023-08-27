@@ -62,7 +62,7 @@ public class CartFragment extends Fragment {
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        String selectQuery = "SELECT * FROM CART WHERE USERID='" + sp.getString(commanclass.ID, "") + "'";
+        String selectQuery = "SELECT * FROM CART WHERE USERID='" + sp.getString(commanclass.ID, "") + "' AND ORDERID='0'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.getCount() > 0) {
             check.setVisibility(View.VISIBLE);

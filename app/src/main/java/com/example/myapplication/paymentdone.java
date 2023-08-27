@@ -24,7 +24,7 @@ public class paymentdone extends AppCompatActivity {
                 anim.setVisibility(View.VISIBLE);
                 anim.playAnimation();
             }
-        }, 2000);
+        }, 0);
 
         anim.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
@@ -35,6 +35,7 @@ public class paymentdone extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 new commanmethod(paymentdone.this , deshbord.class);
+                new commanmethod(paymentdone.this , "Order Placed");
             }
 
             @Override

@@ -23,6 +23,14 @@ public class commanclass {
     public static String TotalPrice="Totalp";
 
     public  static  String ORDER_ID="order_id";
+    public  static  String ORDER_COUNRTY="order_country";
+    public  static  String ORDER_STATE="order_state";
+    public  static  String ORDER_CITY="order_city";
+    public  static  String ORDER_NAME="order_name";
+    public  static  String ORDER_CONTACT="order_contact";
+    public  static  String ORDER_AREA="order_area";
+    public  static  String ORDER_LANDMARK="order_landamrk";
+    public  static  String ORDER_PINCODE="order_pincode";
 
 
 }
